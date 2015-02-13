@@ -1,0 +1,37 @@
+<craft name="cloverleaf">
+	<parameter name="numberOfLeaves" default="3" type="int"/>
+	<script type="text/openjscad">
+		function main(params)
+		{
+		    //vars
+		        var no_of_leaves = params.numberOfLeaves || 3;
+		        if(no_of_leaves > 4 || no_of_leaves <= 0) no_of_leaves = 3;
+		        
+		    //---------------
+
+		    var c = cylinder().translate([1,0,0]);
+		    
+		    c = difference(c,c.rotateZ(30));
+		    
+		    c = difference(c,cube().rotateZ(10).translate([1.6,-0.5,0]));
+		    
+		    var cutting_space = cylinder({'r':3,'fn':64}).translate([-3,0,0]);
+		    cutting_space = intersection(cutting_space,cutting_space.rotateZ(90));
+		    cutting_space = cutting_space.rotateZ(-45);
+		    
+		    var leaf = cylinder().translate([0,-0.35,0]);
+		    leaf = union(leaf,leaf.mirroredY());
+		    leaf = leaf.scale([1,0.6,1]).translate([-1,0,0]);
+		    leaf = intersection(leaf,cutting_space).rotateZ(120);
+		    
+		    for(var i = 1; i < no_of_leaves+1;i++)
+		    {
+		        c = union(c,leaf.rotateZ(360/(no_of_leaves+1)*i));
+		    }
+		    
+		    c = union(c,cylinder({'r':0.11}));
+		    
+		    return c;
+		}
+	</script>
+</craft>
