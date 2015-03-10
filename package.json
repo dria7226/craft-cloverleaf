@@ -1,6 +1,6 @@
 {
   "name": "craft-cloverleaf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Clover leaf.",
   "main": "index.js",
   "scripts": {
