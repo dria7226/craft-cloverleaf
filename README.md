@@ -17,3 +17,5 @@ numberOfLeaves - determines the number of leaves.
 	<clover numberOfLeaves="2"></clover>
 </craft>
 ```
+
+![example](example.png)
